@@ -39,6 +39,48 @@ expect.extend({
   }
 })
 
+describe('constructor', () => {
+
+  test('year', () => {
+    expect(new RubyDate(1)).toBeDate(1, 1, 1)
+    expect(new RubyDate(99)).toBeDate(99, 1, 1)
+    expect(new RubyDate(100)).toBeDate(100, 1, 1)
+    expect(new RubyDate(1900)).toBeDate(1900, 1, 1)
+    expect(new RubyDate(2000)).toBeDate(2000, 1, 1)
+    expect(new RubyDate(2100)).toBeDate(2100, 1, 1)
+  })
+
+  test('year and month', () => {
+    expect(new RubyDate(2018, 0)).toBeDate(2017, 12, 1)
+    expect(new RubyDate(2018, 1)).toBeDate(2018, 1, 1)
+    expect(new RubyDate(2018, 5)).toBeDate(2018, 5, 1)
+    expect(new RubyDate(2018, 12)).toBeDate(2018, 12, 1)
+    expect(new RubyDate(2018, 13)).toBeDate(2019, 1, 1)
+
+    expect(new RubyDate(1, 5)).toBeDate(1, 5, 1)
+    expect(new RubyDate(99, 5)).toBeDate(99, 5, 1)
+    expect(new RubyDate(100, 5)).toBeDate(100, 5, 1)
+  })
+
+  test('year, month and day', () => {
+    expect(new RubyDate(2018, 5, 0)).toBeDate(2018, 4, 30)
+    expect(new RubyDate(2018, 5, 1)).toBeDate(2018, 5, 1)
+    expect(new RubyDate(2018, 5, 31)).toBeDate(2018, 5, 31)
+    expect(new RubyDate(2018, 5, 32)).toBeDate(2018, 6, 1)
+
+    expect(new RubyDate(2018, 0, 15)).toBeDate(2017, 12, 15)
+    expect(new RubyDate(2018, 1, 15)).toBeDate(2018, 1, 15)
+    expect(new RubyDate(2018, 5, 15)).toBeDate(2018, 5, 15)
+    expect(new RubyDate(2018, 12, 15)).toBeDate(2018, 12, 15)
+    expect(new RubyDate(2018, 13, 15)).toBeDate(2019, 1, 15)
+
+    expect(new RubyDate(1, 5, 15)).toBeDate(1, 5, 15)
+    expect(new RubyDate(99, 5, 15)).toBeDate(99, 5, 15)
+    expect(new RubyDate(100, 5, 15)).toBeDate(100, 5, 15)
+  })
+
+})
+
 describe('operator', () => {
 
   // test.skip('==', () => {
