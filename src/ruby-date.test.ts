@@ -121,6 +121,11 @@ describe('operator', () => {
 
 })
 
+test('today', () => {
+  const now = new Date()
+  expect(RubyDate.today()).toBeDate(now.getFullYear(), now.getMonth() + 1, now.getDate())
+})
+
 test('day', () => {
   const date = new RubyDate(2021, 5, 20)
   expect(date.day()).toEqual(20)

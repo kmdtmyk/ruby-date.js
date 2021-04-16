@@ -13,6 +13,14 @@ export default class RubyDate{
     this.date = date
   }
 
+  static today(): RubyDate{
+    const now = new Date(Date.now())
+    const year = now.getFullYear()
+    const month = now.getMonth() + 1
+    const day = now.getDate()
+    return new RubyDate(year, month, day)
+  }
+
   day(): number{
     return this.date.getDate()
   }
