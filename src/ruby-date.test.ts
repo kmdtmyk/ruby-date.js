@@ -1,5 +1,44 @@
 import RubyDate from './ruby-date'
 
+declare global{
+  namespace jest{
+    interface Matchers<R>{
+      toBeDate(year: number, month: number, day:number): R
+    }
+  }
+}
+
+expect.extend({
+  toBeDate(received, year, month, day){
+    let date = received
+    if(date instanceof RubyDate){
+      date = date.toDate()
+    }
+    const pass = (
+      date.getFullYear() === year &&
+      date.getMonth() + 1 === month &&
+      date.getDate() === day
+    )
+    return {
+      pass,
+      message(){
+        const expected = `${
+          `${year}`.padStart(4, '0')
+        }-${
+          `${month}`.padStart(2, '0')
+        }-${
+          `${day}`.padStart(2, '0')
+        }`
+        if(pass){
+          return `${received} and ${expected} are same date`
+        }else{
+          return `${received} and ${expected} are not same date`
+        }
+      }
+    }
+  }
+})
+
 test('day', () => {
   const date = new RubyDate(2021, 5, 20)
   expect(date.day()).toEqual(20)
@@ -8,6 +47,47 @@ test('day', () => {
 test('month', () => {
   const date = new RubyDate(2021, 5, 20)
   expect(date.month()).toEqual(5)
+})
+
+test('nextDay', () => {
+  const date = new RubyDate(2017, 5, 15)
+  expect(date.nextDay()).toBeDate(2017, 5, 16)
+  expect(date.nextDay(-15)).toBeDate(2017, 4, 30)
+  expect(date.nextDay(-1)).toBeDate(2017, 5, 14)
+  expect(date.nextDay(0)).toBeDate(2017, 5, 15)
+  expect(date.nextDay(1)).toBeDate(2017, 5, 16)
+  expect(date.nextDay(17)).toBeDate(2017, 6, 1)
+})
+
+test('nextMonth', () => {
+  let date = new RubyDate(2016, 8, 1)
+  expect(date.nextMonth()).toBeDate(2016, 9, 1)
+  expect(date.nextMonth(1)).toBeDate(2016, 9, 1)
+  expect(date.nextMonth(4)).toBeDate(2016, 12, 1)
+  expect(date.nextMonth(5)).toBeDate(2017, 1, 1)
+
+  date = new RubyDate(2016, 8, 15)
+  expect(date.nextMonth(-1)).toBeDate(2016, 7, 15)
+  expect(date.nextMonth(0)).toBeDate(2016, 8, 15)
+  expect(date.nextMonth(1)).toBeDate(2016, 9, 15)
+
+  date = new RubyDate(2016, 8, 31)
+  expect(date.nextMonth(1)).toBeDate(2016, 9, 30)
+  expect(date.nextMonth(6)).toBeDate(2017, 2, 28)
+  expect(date.nextMonth(-2)).toBeDate(2016, 6, 30)
+})
+
+test('nextYear', () => {
+  let date = new RubyDate(2016, 5, 15)
+  expect(date.nextYear()).toBeDate(2017, 5, 15)
+  expect(date.nextYear(-1)).toBeDate(2015, 5, 15)
+  expect(date.nextYear(0)).toBeDate(2016, 5, 15)
+  expect(date.nextYear(1)).toBeDate(2017, 5, 15)
+
+  date = new RubyDate(2016, 2, 29)
+  expect(date.nextYear(-1)).toBeDate(2015, 2, 28)
+  expect(date.nextYear(1)).toBeDate(2017, 2, 28)
+  expect(date.nextYear(4)).toBeDate(2020, 2, 29)
 })
 
 test('toDate', () => {
