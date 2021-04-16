@@ -58,6 +58,8 @@ describe('constructor', () => {
     expect(new RubyDate(2018, 13)).toBeDate(2019, 1, 1)
 
     expect(new RubyDate(1, 5)).toBeDate(1, 5, 1)
+    expect(new RubyDate(50, 0)).toBeDate(49, 12, 1)
+    expect(new RubyDate(50, 13)).toBeDate(51, 1, 1)
     expect(new RubyDate(99, 5)).toBeDate(99, 5, 1)
     expect(new RubyDate(100, 5)).toBeDate(100, 5, 1)
   })

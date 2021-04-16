@@ -4,12 +4,10 @@ export default class RubyDate{
   private date: Date
 
   constructor(year: number, month: number = 1, day: number = 1){
-    const date = new Date(year, month - 1, day, 0, 0, 0, 0)
-    // Year is auto converted from 0 ~ 99 to 1900 ~ 1999
-    const converted = 1800 < date.getFullYear() - year
-    if(converted){
-      date.setFullYear(year)
-    }
+    const date = new Date(2000, 0, 1, 0, 0, 0, 0)
+    date.setFullYear(year)
+    date.setMonth(month - 1)
+    date.setDate(day)
     this.date = date
   }
 
