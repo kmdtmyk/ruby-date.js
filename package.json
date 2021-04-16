@@ -1,7 +1,7 @@
 {
   "name": "@kmdtmyk/ruby-date",
   "version": "0.0.0",
-  "description": "",
+  "description": "Date class that can be used same as Ruby's Date",
   "main": "",
   "scripts": {
     "test": "jest"
