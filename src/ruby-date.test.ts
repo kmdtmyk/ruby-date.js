@@ -39,6 +39,46 @@ expect.extend({
   }
 })
 
+describe('operator', () => {
+
+  // test.skip('==', () => {
+  //   expect(new RubyDate(2021, 3, 15) == new RubyDate(2021, 3, 14)).toBe(false)
+  //   expect(new RubyDate(2021, 3, 15) == new RubyDate(2021, 3, 15)).toBe(true)
+  //   expect(new RubyDate(2021, 3, 15) == new RubyDate(2021, 3, 16)).toBe(false)
+  // })
+
+  // test.skip('!=', () => {
+  //   expect(new RubyDate(2021, 3, 15) != new RubyDate(2021, 3, 14)).toBe(true)
+  //   expect(new RubyDate(2021, 3, 15) != new RubyDate(2021, 3, 15)).toBe(false)
+  //   expect(new RubyDate(2021, 3, 15) != new RubyDate(2021, 3, 16)).toBe(true)
+  // })
+
+  test('<', () => {
+    expect(new RubyDate(2021, 3, 15) < new RubyDate(2021, 3, 14)).toEqual(false)
+    expect(new RubyDate(2021, 3, 15) < new RubyDate(2021, 3, 15)).toEqual(false)
+    expect(new RubyDate(2021, 3, 15) < new RubyDate(2021, 3, 16)).toEqual(true)
+  })
+
+  test('<=', () => {
+    expect(new RubyDate(2021, 3, 15) <= new RubyDate(2021, 3, 14)).toEqual(false)
+    expect(new RubyDate(2021, 3, 15) <= new RubyDate(2021, 3, 15)).toEqual(true)
+    expect(new RubyDate(2021, 3, 15) <= new RubyDate(2021, 3, 16)).toEqual(true)
+  })
+
+  test('>', () => {
+    expect(new RubyDate(2021, 3, 15) > new RubyDate(2021, 3, 14)).toEqual(true)
+    expect(new RubyDate(2021, 3, 15) > new RubyDate(2021, 3, 15)).toEqual(false)
+    expect(new RubyDate(2021, 3, 15) > new RubyDate(2021, 3, 16)).toEqual(false)
+  })
+
+  test('>=', () => {
+    expect(new RubyDate(2021, 3, 15) >= new RubyDate(2021, 3, 14)).toEqual(true)
+    expect(new RubyDate(2021, 3, 15) >= new RubyDate(2021, 3, 15)).toEqual(true)
+    expect(new RubyDate(2021, 3, 15) >= new RubyDate(2021, 3, 16)).toEqual(false)
+  })
+
+})
+
 test('day', () => {
   const date = new RubyDate(2021, 5, 20)
   expect(date.day()).toEqual(20)
