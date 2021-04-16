@@ -21,11 +21,11 @@ export default class RubyDate{
     return this.date.getMonth() + 1
   }
 
-  nextDay(n = 1): RubyDate{
+  nextDay(n: number = 1): RubyDate{
     return new RubyDate(this.year(), this.month(), this.day() + n)
   }
 
-  nextMonth(n = 1): RubyDate{
+  nextMonth(n: number = 1): RubyDate{
     const year = this.year()
     const month = this.month()
     const day = this.day()
@@ -34,7 +34,7 @@ export default class RubyDate{
     return d1 < d2 ? d1 : d2
   }
 
-  nextYear(n = 1): RubyDate{
+  nextYear(n: number = 1): RubyDate{
     const year = this.year()
     const month = this.month()
     const day = this.day()
@@ -47,7 +47,7 @@ export default class RubyDate{
     return new Date(this.date)
   }
 
-  toString(){
+  toString(): string{
     const year = `${this.year()}`.padStart(4, '0')
     const month = `${this.month()}`.padStart(2, '0')
     const day = `${this.day()}`.padStart(2, '0')
