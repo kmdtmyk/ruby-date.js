@@ -19,8 +19,24 @@ export default class RubyDate{
     return new RubyDate(year, month, day)
   }
 
+  beginningOfMonth(): RubyDate{
+    return new RubyDate(this.year(), this.month(), 1)
+  }
+
+  beginningOfYear(): RubyDate{
+    return new RubyDate(this.year(), 1, 1)
+  }
+
   day(): number{
     return this.date.getDate()
+  }
+
+  endOfMonth(): RubyDate{
+    return new RubyDate(this.year(), this.month() + 1, 0)
+  }
+
+  endOfYear(): RubyDate{
+    return new RubyDate(this.year(), 12, 31)
   }
 
   month(): number{

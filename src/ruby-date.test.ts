@@ -128,9 +128,38 @@ test('today', () => {
   expect(RubyDate.today()).toBeDate(now.getFullYear(), now.getMonth() + 1, now.getDate())
 })
 
+test('beginningOfMonth', () => {
+  expect(new RubyDate(2017, 5, 1).beginningOfMonth()).toBeDate(2017, 5, 1)
+  expect(new RubyDate(2017, 5, 15).beginningOfMonth()).toBeDate(2017, 5, 1)
+  expect(new RubyDate(2017, 5, 31).beginningOfMonth()).toBeDate(2017, 5, 1)
+})
+
+test('beginningOfYear', () => {
+  expect(new RubyDate(2017, 1, 1).beginningOfYear()).toBeDate(2017, 1, 1)
+  expect(new RubyDate(2017, 5, 15).beginningOfYear()).toBeDate(2017, 1, 1)
+  expect(new RubyDate(2017, 12, 31).beginningOfYear()).toBeDate(2017, 1, 1)
+})
+
 test('day', () => {
   const date = new RubyDate(2021, 5, 20)
   expect(date.day()).toEqual(20)
+})
+
+
+test('endOfMonth', () => {
+  expect(new RubyDate(2016, 8, 1).endOfMonth()).toBeDate(2016, 8, 31)
+  expect(new RubyDate(2016, 8, 15).endOfMonth()).toBeDate(2016, 8, 31)
+  expect(new RubyDate(2016, 8, 31).endOfMonth()).toBeDate(2016, 8, 31)
+
+  expect(new RubyDate(2016, 2, 25).endOfMonth()).toBeDate(2016, 2, 29)
+  expect(new RubyDate(2017, 2, 25).endOfMonth()).toBeDate(2017, 2, 28)
+})
+
+test('endOfYear', () => {
+  expect(new RubyDate(2017, 1, 1).endOfYear()).toBeDate(2017, 12, 31)
+  expect(new RubyDate(2017, 5, 15).endOfYear()).toBeDate(2017, 12, 31)
+  expect(new RubyDate(2017, 12, 1).endOfYear()).toBeDate(2017, 12, 31)
+  expect(new RubyDate(2018, 1, 31).endOfYear()).toBeDate(2018, 12, 31)
 })
 
 test('month', () => {
