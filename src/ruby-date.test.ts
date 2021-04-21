@@ -41,6 +41,10 @@ expect.extend({
 
 describe('constructor', () => {
 
+  test('no argument', () => {
+    expect(new RubyDate()).toBeDate(-4712, 1, 1)
+  })
+
   test('year', () => {
     expect(new RubyDate(1)).toBeDate(1, 1, 1)
     expect(new RubyDate(99)).toBeDate(99, 1, 1)

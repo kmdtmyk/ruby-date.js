@@ -3,7 +3,7 @@ export default class RubyDate{
 
   private date: Date
 
-  constructor(year: number, month: number = 1, day: number = 1){
+  constructor(year: number = -4712, month: number = 1, day: number = 1){
     const date = new Date(2000, 0, 1, 0, 0, 0, 0)
     date.setFullYear(year)
     date.setMonth(month - 1)
