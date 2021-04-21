@@ -8,6 +8,9 @@ export default class RubyDate{
     date.setFullYear(year)
     date.setMonth(month - 1)
     date.setDate(day)
+    if(isNaN(date.getTime())){
+      throw new TypeError('Invalid Date')
+    }
     this.#date = date
   }
 

@@ -85,6 +85,11 @@ describe('constructor', () => {
     expect(new RubyDate(100, 5, 15)).toBeDate(100, 5, 15)
   })
 
+  test('invalid date', () => {
+    // @ts-expect-error
+    expect(() => new RubyDate('foo')).toThrow()
+  })
+
 })
 
 describe('operator', () => {
