@@ -1,7 +1,7 @@
 
 export default class RubyDate{
 
-  #date: Date
+  private date: Date
 
   constructor(year: number = -4712, month: number = 1, day: number = 1){
     const date = new Date(2000, 0, 1, 0, 0, 0, 0)
@@ -11,7 +11,7 @@ export default class RubyDate{
     if(isNaN(date.getTime())){
       throw new TypeError('Invalid Date')
     }
-    this.#date = date
+    this.date = date
   }
 
   static today(): RubyDate{
@@ -31,7 +31,7 @@ export default class RubyDate{
   }
 
   day(): number{
-    return this.#date.getDate()
+    return this.date.getDate()
   }
 
   endOfMonth(): RubyDate{
@@ -43,7 +43,7 @@ export default class RubyDate{
   }
 
   month(): number{
-    return this.#date.getMonth() + 1
+    return this.date.getMonth() + 1
   }
 
   nextDay(n: number = 1): RubyDate{
@@ -69,7 +69,7 @@ export default class RubyDate{
   }
 
   toDate(): Date{
-    return new Date(this.#date)
+    return new Date(this.date)
   }
 
   toString(): string{
@@ -80,7 +80,7 @@ export default class RubyDate{
   }
 
   year(): number{
-    return this.#date.getFullYear()
+    return this.date.getFullYear()
   }
 
 }
