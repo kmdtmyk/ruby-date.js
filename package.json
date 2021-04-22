@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "Date class that can be used same as Ruby's Date",
   "main": "dist/ruby-date.js",
+  "types": "dist/ruby-date.d.ts",
   "scripts": {
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
