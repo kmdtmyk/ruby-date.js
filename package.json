@@ -13,6 +13,11 @@
     "type": "git",
     "url": "git+https://github.com/kmdtmyk/ruby-date.js.git"
   },
+  "files": [
+    "dist/*.js",
+    "dist/*.js.map",
+    "dist/ruby-date.d.ts"
+  ],
   "keywords": [
     "date"
   ],
