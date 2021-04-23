@@ -152,7 +152,9 @@ describe('parse', () => {
     expect(() => RubyDate.parse({})).toThrow()
     // @ts-expect-error
     expect(() => RubyDate.parse([])).toThrow()
+    // @ts-ignore
     expect(() => RubyDate.parse(null)).toThrow()
+    // @ts-ignore
     expect(() => RubyDate.parse(undefined)).toThrow()
   })
 
