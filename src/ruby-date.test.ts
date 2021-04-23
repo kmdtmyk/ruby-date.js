@@ -132,6 +132,32 @@ describe('operator', () => {
 
 })
 
+describe('parse', () => {
+
+  test('year month day', () => {
+    expect(RubyDate.parse('2021-01-05')).toBeDate(2021, 1, 5)
+    expect(RubyDate.parse('2021/01/05')).toBeDate(2021, 1, 5)
+    expect(RubyDate.parse('2021.01.05')).toBeDate(2021, 1, 5)
+
+    expect(RubyDate.parse('2021-1-5')).toBeDate(2021, 1, 5)
+    expect(RubyDate.parse('2021/1/5')).toBeDate(2021, 1, 5)
+    expect(RubyDate.parse('2021.1.5')).toBeDate(2021, 1, 5)
+  })
+
+  test('invalid date', () => {
+    expect(() => RubyDate.parse('foo')).toThrow()
+    // @ts-expect-error
+    expect(() => RubyDate.parse(123)).toThrow()
+    // @ts-expect-error
+    expect(() => RubyDate.parse({})).toThrow()
+    // @ts-expect-error
+    expect(() => RubyDate.parse([])).toThrow()
+    expect(() => RubyDate.parse(null)).toThrow()
+    expect(() => RubyDate.parse(undefined)).toThrow()
+  })
+
+})
+
 test('today', () => {
   const now = new Date()
   expect(RubyDate.today()).toBeDate(now.getFullYear(), now.getMonth() + 1, now.getDate())

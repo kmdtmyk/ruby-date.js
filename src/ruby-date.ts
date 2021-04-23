@@ -14,6 +14,21 @@ export default class RubyDate{
     this._d = date
   }
 
+  static parse(str: string): RubyDate{
+    if(typeof str !== 'string'){
+      throw new TypeError('Invalid Date')
+    }
+    const time = Date.parse(str)
+    if(isNaN(time)){
+      throw new TypeError('Invalid Date')
+    }
+    const date = new Date(time)
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    return new RubyDate(year, month, day)
+  }
+
   static today(): RubyDate{
     const now = new Date(Date.now())
     const year = now.getFullYear()
