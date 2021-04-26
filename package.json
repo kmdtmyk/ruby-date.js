@@ -1,6 +1,6 @@
 {
   "name": "@kmdtmyk/ruby-date",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Date class that can be used same as Ruby's Date",
   "main": "dist/ruby-date.min.js",
   "types": "dist/ruby-date.d.ts",
