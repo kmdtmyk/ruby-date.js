@@ -145,7 +145,7 @@ describe('parse', () => {
   })
 
   test('ISO 8601', () => {
-    expect(RubyDate.parse('2021-04-27T02:20:12+09:00')).toBeDate(2021, 4, 27)
+    expect(RubyDate.parse('2021-04-27T02:20:12+00:00')).toBeDate(2021, 4, 27)
     expect(RubyDate.parse('2021-04-27T00:00:00.000Z')).toBeDate(2021, 4, 27)
   })
 

@@ -5,7 +5,7 @@
   "main": "dist/ruby-date.min.js",
   "types": "dist/ruby-date.d.ts",
   "scripts": {
-    "test": "TZ=Asia/Tokyo jest",
+    "test": "TZ=Etc/GMT jest",
     "test:coverage": "npm test -- --coverage",
     "build": "webpack",
     "prepare": "npm run build"
