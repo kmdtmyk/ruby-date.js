@@ -1,3 +1,4 @@
+[![Publish](https://github.com/kmdtmyk/ruby-date.js/workflows/Publish/badge.svg)](https://github.com/kmdtmyk/ruby-date.js/actions)
 [![Test](https://github.com/kmdtmyk/ruby-date.js/workflows/Test/badge.svg)](https://github.com/kmdtmyk/ruby-date.js/actions)
 
 # RubyDate
@@ -6,7 +7,9 @@ Date class that can be used same as Ruby's Date.
 
 ## Installation
 
-WIP
+```
+npm install @kmdtmyk/ruby-date
+```
 
 ## Usage
 
