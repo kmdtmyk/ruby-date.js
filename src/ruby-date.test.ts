@@ -245,6 +245,23 @@ test('nextYear', () => {
   expect(date.nextYear(4)).toBeDate(2020, 2, 29)
 })
 
+test('strftime', () => {
+  expect(new RubyDate(1).strftime('%Y')).toEqual('0001')
+  expect(new RubyDate(1).strftime('%-Y')).toEqual('1')
+  expect(new RubyDate(-1).strftime('%Y')).toEqual('-0001')
+  expect(new RubyDate(-1).strftime('%-Y')).toEqual('-1')
+  expect(new RubyDate(2005).strftime('%y')).toEqual('05')
+  expect(new RubyDate(2005).strftime('%-y')).toEqual('5')
+  expect(new RubyDate(2021, 3).strftime('%m')).toEqual('03')
+  expect(new RubyDate(2021, 3).strftime('%-m')).toEqual('3')
+  expect(new RubyDate(2021, 3, 5).strftime('%d')).toEqual('05')
+  expect(new RubyDate(2021, 3, 5).strftime('%-d')).toEqual('5')
+  expect(new RubyDate(2021, 3, 5).strftime('%Y/%m/%d')).toEqual('2021/03/05')
+
+  expect(new RubyDate(2021, 3, 5).strftime('%%')).toEqual('%')
+  expect(new RubyDate(2021, 3, 5).strftime('foo')).toEqual('foo')
+})
+
 test('toDate', () => {
   const date = new RubyDate(2021, 5, 20)
   expect(date.toDate()).toBeInstanceOf(Date)

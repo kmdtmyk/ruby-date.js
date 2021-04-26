@@ -83,6 +83,44 @@ export default class RubyDate{
     return d1 < d2 ? d1 : d2
   }
 
+  strftime(format: string): string{
+    return format.replace(/%-?[dmYy%]/g, (substring: string): string => {
+      if(substring.endsWith('-Y')){
+        return this.year().toString()
+      }
+      if(substring.endsWith('Y')){
+        const year = this.year()
+        if(0 <= year){
+          return year.toString().padStart(4, '0')
+        }else{
+          return '-' + Math.abs(year).toString().padStart(4, '0')
+        }
+      }
+      if(substring.endsWith('-y')){
+        return (this.year() % 100).toString()
+      }
+      if(substring.endsWith('y')){
+        return (this.year() % 100).toString().padStart(2, '0')
+      }
+      if(substring.endsWith('-m')){
+        return this.month().toString()
+      }
+      if(substring.endsWith('m')){
+        return this.month().toString().padStart(2, '0')
+      }
+      if(substring.endsWith('-d')){
+        return this.day().toString()
+      }
+      if(substring.endsWith('d')){
+        return this.day().toString().padStart(2, '0')
+      }
+      if(substring.endsWith('%')){
+        return '%'
+      }
+      return substring
+    })
+  }
+
   toDate(): Date{
     return new Date(this._d)
   }

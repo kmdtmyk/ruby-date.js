@@ -36,6 +36,15 @@ date.nextMonth(3) // => 2021-06-15
 date.nextYear() // => 2022-03-15
 date.nextYear(3) // => 2024-03-15
 
+date.strftime('%Y/%m/%d') // => "2021/03/15"
+/*
+  [Support format]
+  %m - zero-padded month (01..12)
+  %d - zero-padded day (01..31)
+  %Y - Year with century (can be negative, 4 digits at least)
+  %y - year % 100 (00..99)
+*/
+
 RubyDate.parse('2021/03/15') // => 2021-03-15
 RubyDate.today()
 ```
