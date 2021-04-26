@@ -126,10 +126,7 @@ export default class RubyDate{
   }
 
   toString(): string{
-    const year = `${this.year()}`.padStart(4, '0')
-    const month = `${this.month()}`.padStart(2, '0')
-    const day = `${this.day()}`.padStart(2, '0')
-    return `${year}-${month}-${day}`
+    return this.strftime('%Y-%m-%d')
   }
 
   year(): number{

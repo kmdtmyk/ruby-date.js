@@ -279,6 +279,7 @@ test('toString', () => {
   expect(new RubyDate(1000, 2, 3).toString()).toEqual('1000-02-03')
   expect(new RubyDate(10000, 2, 3).toString()).toEqual('10000-02-03')
   expect(new RubyDate(2021, 11, 22).toString()).toEqual('2021-11-22')
+  expect(new RubyDate(-1, 2, 3).toString()).toEqual('-0001-02-03')
 })
 
 test('year', () => {
