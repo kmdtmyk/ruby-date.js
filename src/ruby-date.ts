@@ -1,4 +1,12 @@
 
+const zeroPadding = (n: number, digit: number): string => {
+  if(0 <= n){
+    return n.toString().padStart(digit, '0')
+  }else{
+    return '-' + Math.abs(n).toString().padStart(digit, '0')
+  }
+}
+
 export default class RubyDate{
 
   private _d: Date
@@ -93,30 +101,25 @@ export default class RubyDate{
         return this.year().toString()
       }
       if(substring.endsWith('Y')){
-        const year = this.year()
-        if(0 <= year){
-          return year.toString().padStart(4, '0')
-        }else{
-          return '-' + Math.abs(year).toString().padStart(4, '0')
-        }
+        return zeroPadding(this.year(), 4)
       }
       if(substring.endsWith('-y')){
         return (this.year() % 100).toString()
       }
       if(substring.endsWith('y')){
-        return (this.year() % 100).toString().padStart(2, '0')
+        return zeroPadding(this.year() % 100, 2)
       }
       if(substring.endsWith('-m')){
         return this.month().toString()
       }
       if(substring.endsWith('m')){
-        return this.month().toString().padStart(2, '0')
+        return zeroPadding(this.month(), 2)
       }
       if(substring.endsWith('-d')){
         return this.day().toString()
       }
       if(substring.endsWith('d')){
-        return this.day().toString().padStart(2, '0')
+        return zeroPadding(this.day(), 2)
       }
       if(substring.endsWith('%')){
         return '%'
@@ -130,7 +133,7 @@ export default class RubyDate{
   }
 
   toString(): string{
-    return this.strftime('%Y-%m-%d')
+    return `${zeroPadding(this.year(), 4)}-${zeroPadding(this.month(), 2)}-${zeroPadding(this.day(), 2)}`
   }
 
   year(): number{
