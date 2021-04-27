@@ -18,6 +18,10 @@ export default class RubyDate{
     if(typeof str !== 'string'){
       return null
     }
+    // avoid UTC minus N hours timezone problem
+    if(str.match(/^\d{4}-\d{2}-\d{2}$/)){
+      str = str.replace(/-/g, '/')
+    }
     const time = Date.parse(str)
     if(isNaN(time)){
       return null
