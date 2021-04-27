@@ -14,13 +14,13 @@ export default class RubyDate{
     this._d = date
   }
 
-  static parse(str: string): RubyDate{
+  static parse(str: string): RubyDate | null{
     if(typeof str !== 'string'){
-      throw new TypeError('Invalid Date')
+      return null
     }
     const time = Date.parse(str)
     if(isNaN(time)){
-      throw new TypeError('Invalid Date')
+      return null
     }
     const date = new Date(time)
     const year = date.getFullYear()

@@ -150,17 +150,17 @@ describe('parse', () => {
   })
 
   test('invalid date', () => {
-    expect(() => RubyDate.parse('foo')).toThrow()
+    expect(RubyDate.parse('foo')).toBeNull()
     // @ts-expect-error
-    expect(() => RubyDate.parse(123)).toThrow()
+    expect(RubyDate.parse(123)).toBeNull()
     // @ts-expect-error
-    expect(() => RubyDate.parse({})).toThrow()
+    expect(RubyDate.parse({})).toBeNull()
     // @ts-expect-error
-    expect(() => RubyDate.parse([])).toThrow()
+    expect(RubyDate.parse([])).toBeNull()
     // @ts-ignore
-    expect(() => RubyDate.parse(null)).toThrow()
+    expect(RubyDate.parse(null)).toBeNull()
     // @ts-ignore
-    expect(() => RubyDate.parse(undefined)).toThrow()
+    expect(RubyDate.parse(undefined)).toBeNull()
   })
 
 })
