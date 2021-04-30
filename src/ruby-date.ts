@@ -7,6 +7,16 @@ const zeroPadding = (n: number, digit: number): string => {
   }
 }
 
+const skipNonExistentDate = (date: RubyDate): RubyDate => {
+  const time = date.toDate().getTime()
+  const timeOf1582_10_05 = -12220156800000
+  const timeOf1582_10_14 = -12219379200000
+  if(timeOf1582_10_05 <= time && time <= timeOf1582_10_14){
+    return new RubyDate(1582, 10, 4)
+  }
+  return date
+}
+
 export default class RubyDate{
 
   private _d: Date
@@ -74,6 +84,16 @@ export default class RubyDate{
   }
 
   nextDay(n: number = 1): RubyDate{
+    const d = new RubyDate(this.year(), this.month(), this.day() + n)
+    const julianGregorianBetweenDays = 10
+    const timeOf1582_10_04 = -12220243200000
+    if(this._d.getTime() <= timeOf1582_10_04 && timeOf1582_10_04 < d.toDate().getTime()){
+      return d.nextDay(julianGregorianBetweenDays)
+    }
+    const timeOf1582_10_15 = -12219292800000
+    if(timeOf1582_10_15 <= this._d.getTime() && d.toDate().getTime() < timeOf1582_10_15){
+      return d.nextDay(-julianGregorianBetweenDays)
+    }
     return new RubyDate(this.year(), this.month(), this.day() + n)
   }
 
@@ -83,7 +103,7 @@ export default class RubyDate{
     const day = this.day()
     const d1 = new RubyDate(year, month + n, day)
     const d2 = new RubyDate(year, month + n + 1, 0)
-    return d1 < d2 ? d1 : d2
+    return skipNonExistentDate(d1 < d2 ? d1 : d2)
   }
 
   nextYear(n: number = 1): RubyDate{
@@ -92,7 +112,7 @@ export default class RubyDate{
     const day = this.day()
     const d1 = new RubyDate(year + n, month, day)
     const d2 = new RubyDate(year + n, month + 1, 0)
-    return d1 < d2 ? d1 : d2
+    return skipNonExistentDate(d1 < d2 ? d1 : d2)
   }
 
   strftime(format: string): string{

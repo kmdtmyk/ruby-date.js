@@ -209,45 +209,86 @@ test('month', () => {
   expect(date.month()).toEqual(5)
 })
 
-test('nextDay', () => {
-  const date = new RubyDate(2017, 5, 15)
-  expect(date.nextDay()).toBeDate(2017, 5, 16)
-  expect(date.nextDay(-15)).toBeDate(2017, 4, 30)
-  expect(date.nextDay(-1)).toBeDate(2017, 5, 14)
-  expect(date.nextDay(0)).toBeDate(2017, 5, 15)
-  expect(date.nextDay(1)).toBeDate(2017, 5, 16)
-  expect(date.nextDay(17)).toBeDate(2017, 6, 1)
+describe('nextDay', () => {
+
+  test('basic', () => {
+    const date = new RubyDate(2017, 5, 15)
+    expect(date.nextDay()).toBeDate(2017, 5, 16)
+    expect(date.nextDay(-15)).toBeDate(2017, 4, 30)
+    expect(date.nextDay(-1)).toBeDate(2017, 5, 14)
+    expect(date.nextDay(0)).toBeDate(2017, 5, 15)
+    expect(date.nextDay(1)).toBeDate(2017, 5, 16)
+    expect(date.nextDay(17)).toBeDate(2017, 6, 1)
+  })
+
+  test('skip 1582-10-05 ... 1582-10-14', () => {
+    expect(new RubyDate(1582, 10, 4).nextDay(1)).toBeDate(1582, 10, 15)
+    expect(new RubyDate(1582, 10, 15).nextDay(-1)).toBeDate(1582, 10, 4)
+  })
+
 })
 
-test('nextMonth', () => {
-  let date = new RubyDate(2016, 8, 1)
-  expect(date.nextMonth()).toBeDate(2016, 9, 1)
-  expect(date.nextMonth(1)).toBeDate(2016, 9, 1)
-  expect(date.nextMonth(4)).toBeDate(2016, 12, 1)
-  expect(date.nextMonth(5)).toBeDate(2017, 1, 1)
+describe('nextMonth', () => {
 
-  date = new RubyDate(2016, 8, 15)
-  expect(date.nextMonth(-1)).toBeDate(2016, 7, 15)
-  expect(date.nextMonth(0)).toBeDate(2016, 8, 15)
-  expect(date.nextMonth(1)).toBeDate(2016, 9, 15)
+  test('basic', () => {
+    let date = new RubyDate(2016, 8, 1)
+    expect(date.nextMonth()).toBeDate(2016, 9, 1)
+    expect(date.nextMonth(1)).toBeDate(2016, 9, 1)
+    expect(date.nextMonth(4)).toBeDate(2016, 12, 1)
+    expect(date.nextMonth(5)).toBeDate(2017, 1, 1)
 
-  date = new RubyDate(2016, 8, 31)
-  expect(date.nextMonth(1)).toBeDate(2016, 9, 30)
-  expect(date.nextMonth(6)).toBeDate(2017, 2, 28)
-  expect(date.nextMonth(-2)).toBeDate(2016, 6, 30)
+    date = new RubyDate(2016, 8, 15)
+    expect(date.nextMonth(-1)).toBeDate(2016, 7, 15)
+    expect(date.nextMonth(0)).toBeDate(2016, 8, 15)
+    expect(date.nextMonth(1)).toBeDate(2016, 9, 15)
+
+    date = new RubyDate(2016, 8, 31)
+    expect(date.nextMonth(1)).toBeDate(2016, 9, 30)
+    expect(date.nextMonth(6)).toBeDate(2017, 2, 28)
+    expect(date.nextMonth(-2)).toBeDate(2016, 6, 30)
+  })
+
+  test('skip 1582-10-05 ... 1582-10-14', () => {
+    expect(new RubyDate(1582, 9, 3).nextMonth(1)).toBeDate(1582, 10, 3)
+    expect(new RubyDate(1582, 9, 4).nextMonth(1)).toBeDate(1582, 10, 4)
+    expect(new RubyDate(1582, 9, 14).nextMonth(1)).toBeDate(1582, 10, 4)
+    expect(new RubyDate(1582, 9, 15).nextMonth(1)).toBeDate(1582, 10, 15)
+
+    expect(new RubyDate(1582, 11, 3).nextMonth(-1)).toBeDate(1582, 10, 3)
+    expect(new RubyDate(1582, 11, 4).nextMonth(-1)).toBeDate(1582, 10, 4)
+    expect(new RubyDate(1582, 11, 14).nextMonth(-1)).toBeDate(1582, 10, 4)
+    expect(new RubyDate(1582, 11, 15).nextMonth(-1)).toBeDate(1582, 10, 15)
+  })
+
 })
 
-test('nextYear', () => {
-  let date = new RubyDate(2016, 5, 15)
-  expect(date.nextYear()).toBeDate(2017, 5, 15)
-  expect(date.nextYear(-1)).toBeDate(2015, 5, 15)
-  expect(date.nextYear(0)).toBeDate(2016, 5, 15)
-  expect(date.nextYear(1)).toBeDate(2017, 5, 15)
+describe('nextYear', () => {
 
-  date = new RubyDate(2016, 2, 29)
-  expect(date.nextYear(-1)).toBeDate(2015, 2, 28)
-  expect(date.nextYear(1)).toBeDate(2017, 2, 28)
-  expect(date.nextYear(4)).toBeDate(2020, 2, 29)
+  test('basic', () => {
+    let date = new RubyDate(2016, 5, 15)
+    expect(date.nextYear()).toBeDate(2017, 5, 15)
+    expect(date.nextYear(-1)).toBeDate(2015, 5, 15)
+    expect(date.nextYear(0)).toBeDate(2016, 5, 15)
+    expect(date.nextYear(1)).toBeDate(2017, 5, 15)
+
+    date = new RubyDate(2016, 2, 29)
+    expect(date.nextYear(-1)).toBeDate(2015, 2, 28)
+    expect(date.nextYear(1)).toBeDate(2017, 2, 28)
+    expect(date.nextYear(4)).toBeDate(2020, 2, 29)
+  })
+
+  test('skip 1582-10-05 ... 1582-10-14', () => {
+    expect(new RubyDate(1581, 10, 3).nextYear(1)).toBeDate(1582, 10, 3)
+    expect(new RubyDate(1581, 10, 4).nextYear(1)).toBeDate(1582, 10, 4)
+    expect(new RubyDate(1581, 10, 14).nextYear(1)).toBeDate(1582, 10, 4)
+    expect(new RubyDate(1581, 10, 15).nextYear(1)).toBeDate(1582, 10, 15)
+
+    expect(new RubyDate(1583, 10, 3).nextYear(-1)).toBeDate(1582, 10, 3)
+    expect(new RubyDate(1583, 10, 4).nextYear(-1)).toBeDate(1582, 10, 4)
+    expect(new RubyDate(1583, 10, 14).nextYear(-1)).toBeDate(1582, 10, 4)
+    expect(new RubyDate(1583, 10, 15).nextYear(-1)).toBeDate(1582, 10, 15)
+  })
+
 })
 
 test('strftime', () => {
