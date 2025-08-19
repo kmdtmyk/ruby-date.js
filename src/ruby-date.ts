@@ -156,6 +156,10 @@ export default class RubyDate{
     return `${zeroPadding(this.year(), 4)}-${zeroPadding(this.month(), 2)}-${zeroPadding(this.day(), 2)}`
   }
 
+  wday(): number{
+    return this._d.getDay()
+  }
+
   year(): number{
     return this._d.getFullYear()
   }

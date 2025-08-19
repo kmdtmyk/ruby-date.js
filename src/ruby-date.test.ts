@@ -323,6 +323,17 @@ test('toString', () => {
   expect(new RubyDate(-1, 2, 3).toString()).toEqual('-0001-02-03')
 })
 
+test('wday', () => {
+  expect(new RubyDate(2025, 8, 17).wday()).toEqual(0)
+  expect(new RubyDate(2025, 8, 18).wday()).toEqual(1)
+  expect(new RubyDate(2025, 8, 19).wday()).toEqual(2)
+  expect(new RubyDate(2025, 8, 20).wday()).toEqual(3)
+  expect(new RubyDate(2025, 8, 21).wday()).toEqual(4)
+  expect(new RubyDate(2025, 8, 22).wday()).toEqual(5)
+  expect(new RubyDate(2025, 8, 23).wday()).toEqual(6)
+  expect(new RubyDate(2025, 8, 24).wday()).toEqual(0)
+})
+
 test('year', () => {
   const date = new RubyDate(2021, 5, 20)
   expect(date.year()).toEqual(2021)

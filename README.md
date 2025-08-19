@@ -24,6 +24,8 @@ date.month() // => 3
 
 date.year() // => 2021
 
+date.wday() // => 1 (0-6, Sunday is 0)
+
 date.beginningOfMonth() // => 2021-03-01
 date.endOfMonth() // => 2021-03-31
 
