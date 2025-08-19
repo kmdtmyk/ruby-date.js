@@ -59,6 +59,14 @@ RubyDate.parse('2021/03/15') // => 2021-03-15
 RubyDate.today()
 ```
 
+## npm
+
+```bash
+npm version [major | minor | patch]
+git push
+git push --tags
+```
+
 ## License
 
 MIT
