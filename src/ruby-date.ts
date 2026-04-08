@@ -116,7 +116,7 @@ export default class RubyDate{
   }
 
   strftime(format: string): string{
-    return format.replace(/%-?[dmYy%]/g, (substring: string): string => {
+    return format.replace(/%-?[aAdmYy%]/g, (substring: string): string => {
       if(substring.endsWith('-Y')){
         return this.year().toString()
       }
@@ -140,6 +140,30 @@ export default class RubyDate{
       }
       if(substring.endsWith('d')){
         return zeroPadding(this.day(), 2)
+      }
+      if(substring.endsWith('a')){
+        return [
+          'Sun',
+          'Mon',
+          'Tue',
+          'Wed',
+          'Thu',
+          'Fri',
+          'Sat',
+          'Sun',
+        ][this.wday()]
+      }
+      if(substring.endsWith('A')){
+        return [
+          'Sunday',
+          'Monday',
+          'Tuesday',
+          'Wednesday',
+          'Thursday',
+          'Friday',
+          'Saturday',
+          'Sunday',
+        ][this.wday()]
       }
       if(substring.endsWith('%')){
         return '%'

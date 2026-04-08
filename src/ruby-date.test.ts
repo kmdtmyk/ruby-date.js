@@ -292,21 +292,45 @@ describe('nextYear', () => {
 
 })
 
-test('strftime', () => {
-  expect(new RubyDate(1).strftime('%Y')).toEqual('0001')
-  expect(new RubyDate(1).strftime('%-Y')).toEqual('1')
-  expect(new RubyDate(-1).strftime('%Y')).toEqual('-0001')
-  expect(new RubyDate(-1).strftime('%-Y')).toEqual('-1')
-  expect(new RubyDate(2005).strftime('%y')).toEqual('05')
-  expect(new RubyDate(2005).strftime('%-y')).toEqual('5')
-  expect(new RubyDate(2021, 3).strftime('%m')).toEqual('03')
-  expect(new RubyDate(2021, 3).strftime('%-m')).toEqual('3')
-  expect(new RubyDate(2021, 3, 5).strftime('%d')).toEqual('05')
-  expect(new RubyDate(2021, 3, 5).strftime('%-d')).toEqual('5')
-  expect(new RubyDate(2021, 3, 5).strftime('%Y/%m/%d')).toEqual('2021/03/05')
+describe('strftime', () => {
 
-  expect(new RubyDate(2021, 3, 5).strftime('%%')).toEqual('%')
-  expect(new RubyDate(2021, 3, 5).strftime('foo')).toEqual('foo')
+  test('basic', () => {
+    expect(new RubyDate(1).strftime('%Y')).toEqual('0001')
+    expect(new RubyDate(1).strftime('%-Y')).toEqual('1')
+    expect(new RubyDate(-1).strftime('%Y')).toEqual('-0001')
+    expect(new RubyDate(-1).strftime('%-Y')).toEqual('-1')
+    expect(new RubyDate(2005).strftime('%y')).toEqual('05')
+    expect(new RubyDate(2005).strftime('%-y')).toEqual('5')
+    expect(new RubyDate(2021, 3).strftime('%m')).toEqual('03')
+    expect(new RubyDate(2021, 3).strftime('%-m')).toEqual('3')
+    expect(new RubyDate(2021, 3, 5).strftime('%d')).toEqual('05')
+    expect(new RubyDate(2021, 3, 5).strftime('%-d')).toEqual('5')
+    expect(new RubyDate(2021, 3, 5).strftime('%Y/%m/%d')).toEqual('2021/03/05')
+
+    expect(new RubyDate(2021, 3, 5).strftime('%%')).toEqual('%')
+    expect(new RubyDate(2021, 3, 5).strftime('foo')).toEqual('foo')
+  })
+
+  test('%a', () => {
+    expect(new RubyDate(2026, 4, 5).strftime('%a')).toEqual('Sun')
+    expect(new RubyDate(2026, 4, 6).strftime('%a')).toEqual('Mon')
+    expect(new RubyDate(2026, 4, 7).strftime('%a')).toEqual('Tue')
+    expect(new RubyDate(2026, 4, 8).strftime('%a')).toEqual('Wed')
+    expect(new RubyDate(2026, 4, 9).strftime('%a')).toEqual('Thu')
+    expect(new RubyDate(2026, 4, 10).strftime('%a')).toEqual('Fri')
+    expect(new RubyDate(2026, 4, 11).strftime('%a')).toEqual('Sat')
+  })
+
+  test('%A', () => {
+    expect(new RubyDate(2026, 4, 5).strftime('%A')).toEqual('Sunday')
+    expect(new RubyDate(2026, 4, 6).strftime('%A')).toEqual('Monday')
+    expect(new RubyDate(2026, 4, 7).strftime('%A')).toEqual('Tuesday')
+    expect(new RubyDate(2026, 4, 8).strftime('%A')).toEqual('Wednesday')
+    expect(new RubyDate(2026, 4, 9).strftime('%A')).toEqual('Thursday')
+    expect(new RubyDate(2026, 4, 10).strftime('%A')).toEqual('Friday')
+    expect(new RubyDate(2026, 4, 11).strftime('%A')).toEqual('Saturday')
+  })
+
 })
 
 test('toDate', () => {

@@ -44,6 +44,8 @@ date.nextYear(3) // => 2024-03-15
 date.strftime('%Y/%m/%d') // => "2021/03/15"
 /*
   [Support format]
+  %a - Sun, Mon, Tue, Wed, Thu, Fri, Sat
+  %A - Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
   %m - zero-padded month (01..12)
   %d - zero-padded day (01..31)
   %Y - Year with century (can be negative, 4 digits at least)
@@ -70,3 +72,5 @@ git push --tags
 ## License
 
 MIT
+
+Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
