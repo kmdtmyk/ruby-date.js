@@ -4,15 +4,15 @@
     "module": "commonjs",
     "declaration": true,
     "sourceMap": true,
-    "rootDir": "./",
-    "outDir": "dist",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
   },
   "include": [
-    "src/**/*"
+    "src/**/*.ts"
   ],
   "exclude": [
     "**/*.test.ts"

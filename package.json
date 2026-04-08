@@ -2,12 +2,12 @@
   "name": "@kmdtmyk/ruby-date",
   "version": "0.2.0",
   "description": "Date class that can be used same as Ruby's Date",
-  "main": "dist/ruby-date.min.js",
+  "main": "dist/ruby-date.js",
   "types": "dist/ruby-date.d.ts",
   "scripts": {
     "test": "TZ=Etc/GMT jest",
     "test:coverage": "npm test -- --coverage",
-    "build": "webpack",
+    "build": "tsc",
     "prepare": "npm run build"
   },
   "repository": {
