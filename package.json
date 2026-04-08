@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/kmdtmyk/ruby-date.js#readme",
   "devDependencies": {
-    "typescript": "^4.7.3",
+    "typescript": "^6.0.2",
     "vitest": "^4.1.3"
   }
 }
