@@ -5,8 +5,7 @@
   "main": "dist/ruby-date.js",
   "types": "dist/ruby-date.d.ts",
   "scripts": {
-    "test": "TZ=Etc/GMT jest",
-    "test:coverage": "npm test -- --coverage",
+    "test": "TZ=Etc/GMT vitest",
     "build": "tsc",
     "prepare": "npm run build"
   },
@@ -29,9 +28,7 @@
   },
   "homepage": "https://github.com/kmdtmyk/ruby-date.js#readme",
   "devDependencies": {
-    "@types/jest": "^28.1.1",
-    "jest": "^28.1.1",
-    "ts-jest": "^28.0.4",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.3",
+    "vitest": "^4.1.3"
   }
 }

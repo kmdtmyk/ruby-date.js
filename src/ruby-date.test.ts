@@ -1,12 +1,13 @@
+import {describe, test, expect} from 'vitest'
+
 import RubyDate from './ruby-date'
 
-declare global{
-  namespace jest{
-    interface Matchers<R>{
-      toBeDate(year: number, month: number, day:number): R
-    }
+declare module 'vitest'{
+  interface Matchers<T = any>{
+    toBeDate: (year: number, month: number, day :number) => T
   }
 }
+
 
 expect.extend({
   toBeDate(received, year, month, day){
