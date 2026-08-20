@@ -27,4 +27,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: npm test
+    - run: npm test -- --run
+    - run: npm run test:asia -- --run
+    - run: npm run test:america -- --run
+
