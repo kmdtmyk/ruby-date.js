@@ -17,6 +17,9 @@ const skipNonExistentDate = (date: RubyDate): RubyDate => {
   return date
 }
 
+const JD_1582_10_04 = 2299160
+const JD_1582_10_15 = 2299161
+
 export default class RubyDate{
 
   private _d: Date
@@ -84,15 +87,13 @@ export default class RubyDate{
   }
 
   nextDay(n: number = 1): RubyDate{
-    const d = new RubyDate(this.year(), this.month(), this.day() + n)
+    const jd = this.jd()
     const julianGregorianBetweenDays = 10
-    const timeOf1582_10_04 = -12220243200000
-    if(this._d.getTime() <= timeOf1582_10_04 && timeOf1582_10_04 < d.toDate().getTime()){
-      return d.nextDay(julianGregorianBetweenDays)
+    if(jd <= JD_1582_10_04 && JD_1582_10_04 < jd + n){
+      return new RubyDate(this.year(), this.month(), this.day() + n + julianGregorianBetweenDays)
     }
-    const timeOf1582_10_15 = -12219292800000
-    if(timeOf1582_10_15 <= this._d.getTime() && d.toDate().getTime() < timeOf1582_10_15){
-      return d.nextDay(-julianGregorianBetweenDays)
+    if(JD_1582_10_15 <= jd && jd + n < JD_1582_10_15){
+      return new RubyDate(this.year(), this.month(), this.day() + n - julianGregorianBetweenDays)
     }
     return new RubyDate(this.year(), this.month(), this.day() + n)
   }

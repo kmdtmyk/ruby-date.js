@@ -6,6 +6,7 @@
   "types": "dist/ruby-date.d.ts",
   "scripts": {
     "test": "TZ=Etc/GMT vitest",
+    "test:asia": "TZ=Asia/Tokyo vitest",
     "build": "tsc",
     "prepare": "npm run build"
   },
