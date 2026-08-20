@@ -147,6 +147,8 @@ describe('parse', () => {
     expect(RubyDate.parse('2021-1-5')).toBeDate(2021, 1, 5)
     expect(RubyDate.parse('2021/1/5')).toBeDate(2021, 1, 5)
     expect(RubyDate.parse('2021.1.5')).toBeDate(2021, 1, 5)
+
+    expect(RubyDate.parse('-0100-01-05')).toBeDate(-100, 1, 5)
   })
 
   test('ISO 8601', () => {
@@ -155,6 +157,8 @@ describe('parse', () => {
   })
 
   test('invalid date', () => {
+    expect(RubyDate.parse('2026-13-05')).toBeNull()
+    expect(RubyDate.parse('2026-08-32')).toBeNull()
     expect(RubyDate.parse('foo')).toBeNull()
     // @ts-expect-error
     expect(RubyDate.parse(123)).toBeNull()

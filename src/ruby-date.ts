@@ -36,9 +36,16 @@ export default class RubyDate{
     if(typeof str !== 'string'){
       return null
     }
-    // avoid UTC minus N hours timezone problem
-    if(str.match(/^\d{4}-\d{2}-\d{2}$/)){
-      str = str.replace(/-/g, '/')
+    const match = str.match(/([+-]?\d+)([-/.])(\d{1,2})\2(\d{1,2})/)
+    if(match != null){
+      const year = Number(match[1])
+      const month = Number(match[3])
+      const day = Number(match[4])
+      const d = new RubyDate(year, month, day)
+      if(month !== d.month() || day !== d.day()){
+        return null
+      }
+      return d
     }
     const time = Date.parse(str)
     if(isNaN(time)){
