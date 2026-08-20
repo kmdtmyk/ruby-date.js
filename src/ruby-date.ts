@@ -41,11 +41,15 @@ export default class RubyDate{
       const year = Number(match[1])
       const month = Number(match[3])
       const day = Number(match[4])
-      const d = new RubyDate(year, month, day)
-      if(month !== d.month() || day !== d.day()){
+      try{
+        const d = new RubyDate(year, month, day)
+        if(year !== d.year() || month !== d.month() || day !== d.day()){
+          return null
+        }
+        return d
+      }catch{
         return null
       }
-      return d
     }
     const time = Date.parse(str)
     if(isNaN(time)){
