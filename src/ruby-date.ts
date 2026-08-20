@@ -180,6 +180,10 @@ export default class RubyDate{
     return `${zeroPadding(this.year(), 4)}-${zeroPadding(this.month(), 2)}-${zeroPadding(this.day(), 2)}`
   }
 
+  valueOf(): number{
+    return this.jd()
+  }
+
   wday(): number{
     return this._d.getDay()
   }

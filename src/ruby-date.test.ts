@@ -111,24 +111,28 @@ describe('operator', () => {
     expect(new RubyDate(2021, 3, 15) < new RubyDate(2021, 3, 14)).toEqual(false)
     expect(new RubyDate(2021, 3, 15) < new RubyDate(2021, 3, 15)).toEqual(false)
     expect(new RubyDate(2021, 3, 15) < new RubyDate(2021, 3, 16)).toEqual(true)
+    expect(new RubyDate(-2, 1, 1) < new RubyDate(-1, 1, 1)).toEqual(true)
   })
 
   test('<=', () => {
     expect(new RubyDate(2021, 3, 15) <= new RubyDate(2021, 3, 14)).toEqual(false)
     expect(new RubyDate(2021, 3, 15) <= new RubyDate(2021, 3, 15)).toEqual(true)
     expect(new RubyDate(2021, 3, 15) <= new RubyDate(2021, 3, 16)).toEqual(true)
+    expect(new RubyDate(-2, 1, 1) <= new RubyDate(-1, 1, 1)).toEqual(true)
   })
 
   test('>', () => {
     expect(new RubyDate(2021, 3, 15) > new RubyDate(2021, 3, 14)).toEqual(true)
     expect(new RubyDate(2021, 3, 15) > new RubyDate(2021, 3, 15)).toEqual(false)
     expect(new RubyDate(2021, 3, 15) > new RubyDate(2021, 3, 16)).toEqual(false)
+    expect(new RubyDate(-1, 1, 1) > new RubyDate(-2, 1, 1)).toEqual(true)
   })
 
   test('>=', () => {
     expect(new RubyDate(2021, 3, 15) >= new RubyDate(2021, 3, 14)).toEqual(true)
     expect(new RubyDate(2021, 3, 15) >= new RubyDate(2021, 3, 15)).toEqual(true)
     expect(new RubyDate(2021, 3, 15) >= new RubyDate(2021, 3, 16)).toEqual(false)
+    expect(new RubyDate(-1, 1, 1) >= new RubyDate(-2, 1, 1)).toEqual(true)
   })
 
 })
