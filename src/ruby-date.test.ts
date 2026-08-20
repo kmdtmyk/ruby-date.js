@@ -363,3 +363,16 @@ test('year', () => {
   const date = new RubyDate(2021, 5, 20)
   expect(date.year()).toEqual(2021)
 })
+
+test('jd', () => {
+  expect(new RubyDate(2026, 8, 20).jd()).toEqual(2461273)
+  expect(new RubyDate(2000, 1, 1).jd()).toEqual(2451545)
+  expect(new RubyDate(1970, 1, 1).jd()).toEqual(2440588)
+  expect(new RubyDate(1900, 1, 1).jd()).toEqual(2415021)
+  expect(new RubyDate(1582, 10, 15).jd()).toEqual(2299161)
+  expect(new RubyDate(1582, 10, 4).jd()).toEqual(2299160)
+  expect(new RubyDate(1500, 3, 1).jd()).toEqual(2268993)
+  expect(new RubyDate(0, 1, 1).jd()).toEqual(1721058)
+  expect(new RubyDate(-1, 12, 31).jd()).toEqual(1721057)
+  expect(new RubyDate(-4712, 1, 1).jd()).toEqual(0)
+})
