@@ -8,10 +8,7 @@ const zeroPadding = (n: number, digit: number): string => {
 }
 
 const skipNonExistentDate = (date: RubyDate): RubyDate => {
-  const time = date.toDate().getTime()
-  const timeOf1582_10_05 = -12220156800000
-  const timeOf1582_10_14 = -12219379200000
-  if(timeOf1582_10_05 <= time && time <= timeOf1582_10_14){
+  if(date.year() === 1582 && date.month() === 10 && 5 <= date.day() && date.day() <= 14){
     return new RubyDate(1582, 10, 4)
   }
   return date
