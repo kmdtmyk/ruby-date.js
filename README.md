@@ -52,7 +52,7 @@ date.strftime('%Y/%m/%d') // => "2021/03/15"
   %y - year % 100 (00..99)
 */
 
-date.toDate() // => return JavaScript standard build-in Date object
+date.toDate() // => return JavaScript standard built-in Date object
 date.toString() // => "2021-03-15"
 ```
 
