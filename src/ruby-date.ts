@@ -185,6 +185,10 @@ export default class RubyDate{
     return new Date(this._d)
   }
 
+  toJSON(): string{
+    return this.toString()
+  }
+
   toString(): string{
     return `${zeroPadding(this.year(), 4)}-${zeroPadding(this.month(), 2)}-${zeroPadding(this.day(), 2)}`
   }
