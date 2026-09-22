@@ -2,13 +2,25 @@
   "name": "@kmdtmyk/ruby-date",
   "version": "0.4.0",
   "description": "Date class that can be used same as Ruby's Date",
-  "main": "dist/ruby-date.js",
-  "types": "dist/ruby-date.d.ts",
+  "type": "module",
+  "main": "dist/ruby-date.cjs",
+  "module": "dist/esm/ruby-date.js",
+  "types": "dist/esm/ruby-date.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/ruby-date.d.ts",
+      "import": "./dist/esm/ruby-date.js",
+      "require": {
+        "types": "./dist/ruby-date.cjs.d.cts",
+        "default": "./dist/ruby-date.cjs"
+      }
+    }
+  },
   "scripts": {
     "test": "TZ=Etc/GMT vitest",
     "test:asia": "TZ=Asia/Tokyo vitest",
     "test:america": "TZ=America/New_York vitest",
-    "build": "tsc",
+    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && node scripts/build.mjs",
     "prepare": "npm run build"
   },
   "repository": {
@@ -16,9 +28,7 @@
     "url": "git+https://github.com/kmdtmyk/ruby-date.js.git"
   },
   "files": [
-    "dist/*.js",
-    "dist/*.js.map",
-    "dist/ruby-date.d.ts"
+    "dist/**/*"
   ],
   "keywords": [
     "date"
