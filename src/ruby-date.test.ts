@@ -19,24 +19,27 @@ expect.extend({
       date.getMonth() + 1 === month &&
       date.getDate() === day
     )
+    const expected = `${
+      year < 0 ? '-' : ''
+    }${
+      Math.abs(year).toString().padStart(4, '0')
+    }-${
+      `${month}`.padStart(2, '0')
+    }-${
+      `${day}`.padStart(2, '0')
+    }`
+    const actual = received.toString()
     return {
       pass,
       message(){
-        const expected = `${
-          year < 0 ? '-' : ''
-        }${
-          Math.abs(year).toString().padStart(4, '0')
-        }-${
-          `${month}`.padStart(2, '0')
-        }-${
-          `${day}`.padStart(2, '0')
-        }`
         if(pass){
-          return `${received} and ${expected} are same date`
+          return `expected date not to be: ${expected}, actual: ${actual}`
         }else{
-          return `${received} and ${expected} are not same date`
+          return `expected date: ${expected}, actual: ${actual}`
         }
-      }
+      },
+      expected,
+      actual,
     }
   }
 })
