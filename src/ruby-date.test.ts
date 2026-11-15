@@ -435,6 +435,7 @@ test('jd', () => {
   expect(new RubyDate(0, 1, 1).jd()).toEqual(1721058)
   expect(new RubyDate(-1, 12, 31).jd()).toEqual(1721057)
   expect(new RubyDate(-4712, 1, 1).jd()).toEqual(0)
+  expect(new RubyDate(-4713, 12, 31).jd()).toEqual(-1)
 })
 
 test('JSON.stringify', () => {
