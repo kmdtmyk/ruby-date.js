@@ -185,6 +185,8 @@ describe('parse', () => {
     expect(RubyDate.parse('2026-08-32')).toBeNull()
     expect(RubyDate.parse('2026-08-310')).toBeNull()
     expect(RubyDate.parse('999999-01-01')).toBeNull()
+    expect(RubyDate.parse('99-01-2026')).toBeNull()
+    expect(RubyDate.parse('01-99-2026')).toBeNull()
     expect(RubyDate.parse('foo')).toBeNull()
     // @ts-expect-error
     expect(RubyDate.parse(123)).toBeNull()
