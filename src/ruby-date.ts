@@ -36,7 +36,7 @@ export default class RubyDate{
     if(typeof str !== 'string'){
       return null
     }
-    const match = str.match(/([+-]?\d+)([-/.])(\d{1,2})\2(\d{1,2})/)
+    const match = str.match(/^([+-]?\d+)([-/.])(\d{1,2})\2(\d{1,2})$/)
     if(match != null){
       const year = Number(match[1])
       const month = Number(match[3])
