@@ -320,6 +320,24 @@ describe('strftime', () => {
     expect(new RubyDate(2021, 3, 5).strftime('foo')).toEqual('foo')
   })
 
+  test('%y', () => {
+    expect(new RubyDate(1).strftime('%y')).toEqual('01')
+    expect(new RubyDate(0).strftime('%y')).toEqual('00')
+    expect(new RubyDate(-1).strftime('%y')).toEqual('99')
+    expect(new RubyDate(-95).strftime('%y')).toEqual('05')
+    expect(new RubyDate(-187).strftime('%y')).toEqual('13')
+    expect(new RubyDate(-4712).strftime('%y')).toEqual('88')
+  })
+
+  test('%-y', () => {
+    expect(new RubyDate(1).strftime('%-y')).toEqual('1')
+    expect(new RubyDate(0).strftime('%-y')).toEqual('0')
+    expect(new RubyDate(-1).strftime('%-y')).toEqual('99')
+    expect(new RubyDate(-95).strftime('%-y')).toEqual('5')
+    expect(new RubyDate(-187).strftime('%-y')).toEqual('13')
+    expect(new RubyDate(-4712).strftime('%y')).toEqual('88')
+  })
+
   test('%a', () => {
     expect(new RubyDate(2026, 4, 5).strftime('%a')).toEqual('Sun')
     expect(new RubyDate(2026, 4, 6).strftime('%a')).toEqual('Mon')

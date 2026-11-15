@@ -133,10 +133,10 @@ export default class RubyDate{
         return zeroPadding(this.year(), 4)
       }
       if(substring.endsWith('-y')){
-        return (this.year() % 100).toString()
+        return (((this.year() % 100) + 100) % 100).toString()
       }
       if(substring.endsWith('y')){
-        return zeroPadding(this.year() % 100, 2)
+        return zeroPadding(((this.year() % 100) + 100) % 100, 2)
       }
       if(substring.endsWith('-m')){
         return this.month().toString()
