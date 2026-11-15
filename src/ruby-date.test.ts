@@ -3,8 +3,8 @@ import {describe, test, expect} from 'vitest'
 import RubyDate from './ruby-date'
 
 declare module 'vitest'{
-  interface Matchers<T = any>{
-    toBeDate: (year: number, month: number, day :number) => T
+  interface Matchers<R extends void | Promise<void> = void | Promise<void>, T = unknown>{
+    toBeDate: (year: number, month: number, day :number) => R
   }
 }
 
