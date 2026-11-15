@@ -36,11 +36,27 @@ export default class RubyDate{
     if(typeof str !== 'string'){
       return null
     }
-    const match = str.match(/^([+-]?\d+)([-/.])(\d{1,2})\2(\d{1,2})$/)
-    if(match != null){
-      const year = Number(match[1])
-      const month = Number(match[3])
-      const day = Number(match[4])
+    const yearMonthDayMatch = str.match(/^([+-]?\d+)([-/.])(\d{1,2})\2(\d{1,2})$/)
+    if(yearMonthDayMatch != null){
+      const year = Number(yearMonthDayMatch[1])
+      const month = Number(yearMonthDayMatch[3])
+      const day = Number(yearMonthDayMatch[4])
+      try{
+        const d = new RubyDate(year, month, day)
+        if(year !== d.year() || month !== d.month() || day !== d.day()){
+          return null
+        }
+        return d
+      }catch{
+        return null
+      }
+    }
+
+    const dayMonthYearMatch = str.match(/^(\d{1,2})([-/.])(\d{1,2})\2(-?\d+)$/)
+    if(dayMonthYearMatch != null){
+      const day = Number(dayMonthYearMatch[1])
+      const month = Number(dayMonthYearMatch[3])
+      const year = Number(dayMonthYearMatch[4])
       try{
         const d = new RubyDate(year, month, day)
         if(year !== d.year() || month !== d.month() || day !== d.day()){

@@ -151,6 +151,20 @@ describe('parse', () => {
     expect(RubyDate.parse('-0100-01-05')).toBeDate(-100, 1, 5)
   })
 
+  test('day month year', () => {
+    expect(RubyDate.parse('05-01-2021')).toBeDate(2021, 1, 5)
+    expect(RubyDate.parse('05/01/2021')).toBeDate(2021, 1, 5)
+    expect(RubyDate.parse('05.01.2021')).toBeDate(2021, 1, 5)
+
+    expect(RubyDate.parse('5-1-2021')).toBeDate(2021, 1, 5)
+    expect(RubyDate.parse('5/1/2021')).toBeDate(2021, 1, 5)
+    expect(RubyDate.parse('5.1.2021')).toBeDate(2021, 1, 5)
+
+    expect(RubyDate.parse('05-01--2021')).toBeDate(-2021, 1, 5)
+    expect(RubyDate.parse('05/01/-2021')).toBeDate(-2021, 1, 5)
+    expect(RubyDate.parse('05.01.-2021')).toBeDate(-2021, 1, 5)
+  })
+
   test('ISO 8601', () => {
     expect(RubyDate.parse('2021-04-27T02:20:12+00:00')).toBeDate(2021, 4, 27)
     expect(RubyDate.parse('2021-04-27T00:00:00.000Z')).toBeDate(2021, 4, 27)
