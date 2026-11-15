@@ -36,20 +36,25 @@ export default class RubyDate{
     if(typeof str !== 'string'){
       return null
     }
+
+    const createDate = (year: number, month: number, day: number): RubyDate | null => {
+      try{
+        const date = new RubyDate(year, month, day)
+        if(year !== date.year() || month !== date.month() || day !== date.day()){
+          return null
+        }
+        return date
+      }catch{
+        return null
+      }
+    }
+
     const yearMonthDayMatch = str.match(/^([+-]?\d+)([-/.])(\d{1,2})\2(\d{1,2})$/)
     if(yearMonthDayMatch != null){
       const year = Number(yearMonthDayMatch[1])
       const month = Number(yearMonthDayMatch[3])
       const day = Number(yearMonthDayMatch[4])
-      try{
-        const d = new RubyDate(year, month, day)
-        if(year !== d.year() || month !== d.month() || day !== d.day()){
-          return null
-        }
-        return d
-      }catch{
-        return null
-      }
+      return createDate(year, month, day)
     }
 
     const dayMonthYearMatch = str.match(/^(\d{1,2})([-/.])(\d{1,2})\2(-?\d+)$/)
@@ -57,15 +62,7 @@ export default class RubyDate{
       const day = Number(dayMonthYearMatch[1])
       const month = Number(dayMonthYearMatch[3])
       const year = Number(dayMonthYearMatch[4])
-      try{
-        const d = new RubyDate(year, month, day)
-        if(year !== d.year() || month !== d.month() || day !== d.day()){
-          return null
-        }
-        return d
-      }catch{
-        return null
-      }
+      return createDate(year, month, day)
     }
 
     const isoDateMatch = str.match(/^([+-]?\d+)-(\d{2})-(\d{2})T/)
@@ -77,15 +74,7 @@ export default class RubyDate{
       const year = Number(isoDateMatch[1])
       const month = Number(isoDateMatch[2])
       const day = Number(isoDateMatch[3])
-      try{
-        const d = new RubyDate(year, month, day)
-        if(year !== d.year() || month !== d.month() || day !== d.day()){
-          return null
-        }
-        return d
-      }catch{
-        return null
-      }
+      return createDate(year, month, day)
     }
 
     const time = Date.parse(str)
