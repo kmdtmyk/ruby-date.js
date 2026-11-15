@@ -224,7 +224,7 @@ export default class RubyDate{
   }
 
   wday(): number{
-    return this._d.getDay()
+    return ((this.jd() + 1) % 7 + 7) % 7
   }
 
   year(): number{

@@ -406,6 +406,10 @@ test('wday', () => {
   expect(new RubyDate(2025, 8, 22).wday()).toEqual(5)
   expect(new RubyDate(2025, 8, 23).wday()).toEqual(6)
   expect(new RubyDate(2025, 8, 24).wday()).toEqual(0)
+
+  expect(new RubyDate(1582, 10, 15).wday()).toEqual(5)
+  expect(new RubyDate(1582, 10, 4).wday()).toEqual(4)
+  expect(new RubyDate(1, 1, 1).wday()).toEqual(6)
 })
 
 test('year', () => {
