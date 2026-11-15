@@ -51,6 +51,27 @@ export default class RubyDate{
         return null
       }
     }
+
+    const isoDateMatch = str.match(/^([+-]?\d+)-(\d{2})-(\d{2})T/)
+    if(isoDateMatch != null){
+      const time = Date.parse(str)
+      if(isNaN(time)){
+        return null
+      }
+      const year = Number(isoDateMatch[1])
+      const month = Number(isoDateMatch[2])
+      const day = Number(isoDateMatch[3])
+      try{
+        const d = new RubyDate(year, month, day)
+        if(year !== d.year() || month !== d.month() || day !== d.day()){
+          return null
+        }
+        return d
+      }catch{
+        return null
+      }
+    }
+
     const time = Date.parse(str)
     if(isNaN(time)){
       return null
