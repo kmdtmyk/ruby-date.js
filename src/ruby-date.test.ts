@@ -148,6 +148,10 @@ describe('parse', () => {
     expect(RubyDate.parse('2021/1/5')).toBeDate(2021, 1, 5)
     expect(RubyDate.parse('2021.1.5')).toBeDate(2021, 1, 5)
 
+    expect(RubyDate.parse('-2021-01-05')).toBeDate(-2021, 1, 5)
+    expect(RubyDate.parse('-2021/01/05')).toBeDate(-2021, 1, 5)
+    expect(RubyDate.parse('-2021.01.05')).toBeDate(-2021, 1, 5)
+
     expect(RubyDate.parse('-0100-01-05')).toBeDate(-100, 1, 5)
   })
 
@@ -163,6 +167,8 @@ describe('parse', () => {
     expect(RubyDate.parse('05-01--2021')).toBeDate(-2021, 1, 5)
     expect(RubyDate.parse('05/01/-2021')).toBeDate(-2021, 1, 5)
     expect(RubyDate.parse('05.01.-2021')).toBeDate(-2021, 1, 5)
+
+    expect(RubyDate.parse('05-01--0100')).toBeDate(-100, 1, 5)
   })
 
   test('ISO 8601', () => {
