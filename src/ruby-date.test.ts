@@ -8,7 +8,6 @@ declare module 'vitest'{
   }
 }
 
-
 expect.extend({
   toBeDate(received, year, month, day){
     let date = received
@@ -24,7 +23,9 @@ expect.extend({
       pass,
       message(){
         const expected = `${
-          `${year}`.padStart(4, '0')
+          year < 0 ? '-' : ''
+        }${
+          Math.abs(year).toString().padStart(4, '0')
         }-${
           `${month}`.padStart(2, '0')
         }-${
