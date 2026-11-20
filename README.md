@@ -65,8 +65,7 @@ RubyDate.today()
 
 ```bash
 npm version [major | minor | patch]
-git push
-git push --tags
+git push origin main --follow-tags
 ```
 
 ## License
